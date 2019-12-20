@@ -26,3 +26,21 @@ def testing_times_to_wake_up():
     actual_output = bedtimes.times_to_wake_up(testtime)
 
     assert actual_output == expected_output
+
+
+def testing_times_to_sleep_at():
+    testtime = '10:00'
+
+    expected_output = {
+        '1_cycle': '08:45',
+        '2_cycle': '07:15',
+        '3_cycle': '05:45',
+        '4_cycle': '04:15',
+        '5_cycle': '02:45',
+        '6_cycle': '01:15',
+        '7_cycle': '23:45',
+        '8_cycle': '22:15'}
+
+    actual_output = bedtimes.times_to_sleep_at(testtime, 8)
+
+    assert actual_output == expected_output
