@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 
 # TODO - input / error handling.
 default_naptime = 25
@@ -19,12 +19,14 @@ def times_to_wake_up(sleeping_time, number_of_cycles=default_sleepcycles):
 
     # Get datetime-formatted for user request.
     sleeping_time = get_requested_time(sleeping_time)
-    times = get_nap(sleeping_time)
+
+    # Calculate naptime in order to initialize.
+    times = get_naptime(sleeping_time)
 
     # Loop to calculate the rest of the sleep cycles before return.
     for i in range(1, number_of_cycles + 1):
         minutes = 15 + (i * 90)
-        cycle_time = sleeping_time + datetime.timedelta(minutes=minutes)
+        cycle_time = sleeping_time + timedelta(minutes=minutes)
         times.update({f"{i}_cycle": cycle_time.strftime("%H:%M")})
 
     return times
@@ -48,43 +50,41 @@ def times_to_sleep_at(waking_time, number_of_cycles=default_sleepcycles):
     # Loop to calculate the rest of the sleep cycles before return.
     for i in range(1, number_of_cycles + 1):
         minutes = 15 + (i * 90) * -1
-        cycle_time = waking_time + datetime.timedelta(minutes=minutes)
+        cycle_time = waking_time + timedelta(minutes=minutes)
         times.update({f"{i}_cycle": cycle_time.strftime("%H:%M")})
 
     return times
 
 
-def get_requested_time(time="NOW"):
+def get_requested_time(requested_time="NOW"):
     """
     Converts the user requested time into a usable datetime format.
     This is done in this separate method to help keep the code AMAP.
     If "NOW" is specified - returns for the current time.
 
     Args:
-        time: User requested time.
+        requested_time: User requested time.
 
     Returns: Requested time in usable datetime format.
 
     """
-
-    if time == "NOW":
-        return datetime.datetime.now()
+    current_time = datetime.now()
+    if requested_time == "NOW":
+        return current_time
     else:
-        hours, minutes = map(int, time.split(':'))
-        return datetime.datetime.now().replace(hour=hours, minute=minutes)
+        hours, minutes = map(int, requested_time.split(':'))
+        return current_time.replace(hour=hours, minute=minutes)
 
 
-def get_nap(time, minutes=default_naptime):
+def get_naptime(sleeping_time, nap_minutes=default_naptime):
     """
-    Returns the time a user would wake up at if they were going for a nap.
-
+    Calculate the time you would nap.
     Args:
-        time: User requested time.
-        minutes: User requested minutes to nap. Default is set at default_naptime.
+        sleeping_time: Time you are going to sleep
+        nap_minutes: How long you want to go to sleep for.
 
-    Returns: The time the user would wake up.
+    Returns: When you should wake up.
 
     """
-
-    nap_wakeup_time = get_requested_time(time) + datetime.timedelta(minutes=minutes)
+    nap_wakeup_time = sleeping_time + timedelta(minutes=nap_minutes)
     return {"nap": nap_wakeup_time.strftime("%H:%M")}

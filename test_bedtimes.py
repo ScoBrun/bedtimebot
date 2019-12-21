@@ -5,7 +5,8 @@ def testing_get_nap():
     testing_time = '23:55'
     expected_output = {"nap": "00:20"}
 
-    actual_output = bedtimes.get_nap(testing_time)
+    sleeping_time = bedtimes.get_requested_time(testing_time)
+    actual_output = bedtimes.get_naptime(sleeping_time)
 
     assert actual_output == expected_output
 
