@@ -19,7 +19,7 @@
 5. Go to your bot's URL. Type in `/start` to start the telegram bot. Everything should be working immediately.
 
 ## Bugs and feature requests
-Have a bug or a feature request? [Feel free to open a new issue.](https://github.com/ScoBrun/bedtimebot/issues/new">Submit Issue)
+Have a bug or a feature request? [Feel free to open a new issue](https://github.com/ScoBrun/bedtimebot/issues/new">Submit Issue).
 ## Technologies Used
 - [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) - Telegram bot API Framework
 - [Ismaestro/markdown-template](https://github.com/Ismaestro/markdown-template/blob/master/README.md) - Template base for this Readme.
