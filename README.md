@@ -10,6 +10,17 @@
 
 [![Build Status](https://travis-ci.com/ScoBrun/bedtimebot.svg?branch=master)](https://travis-ci.com/ScoBrun/bedtimebot) 
 
+
+## Use Case and Description
+This is a telegram bot that is designed for people who have difficulty determining when to sleep, for how long, as well as what to set their alarm clock for.
+
+The bot's main purpose currently is to do the legwork of calculating the best times based on two things: taking 15 minutes to fall asleep and  90-minute cycles. Where appropriate, the bot also provides the information on a nap (25 minutes) - so you can plan a power nap through your day.
+
+## Key Features
+- `/sleepat` - Users can input a time they wish to go to bed at, returning suggested times to wake up at.
+- `/sleepnow` - Users can request what time to get up at if they go to sleep right now.
+- `/wakeupat` - Users can calculate what time to fall asleep based on the time that they wish to get up.
+
 ## Setup/Dev instructions
 1. Configure your bot tokens via [@botfather](https://telegram.me/botfather)
 2. Install the following on your python3 server via pip: `pip install -U python-telegram-bot pytest`
