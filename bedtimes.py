@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
-# TODO - input / error handling.
+# TODO - proper once over testing.
+
 default_naptime = 25
 default_sleepcycles = 6
 
@@ -27,7 +28,7 @@ def times_to_wake_up(sleeping_time, number_of_cycles=default_sleepcycles):
     for i in range(1, number_of_cycles + 1):
         minutes = 15 + (i * 90)
         cycle_time = sleeping_time + timedelta(minutes=minutes)
-        times.update({f"{i}_cycle": cycle_time.strftime("%H:%M")})
+        times.update({f'{i}': cycle_time.strftime("%H:%M")})
 
     return times
 
@@ -51,7 +52,7 @@ def times_to_sleep_at(waking_time, number_of_cycles=default_sleepcycles):
     for i in range(1, number_of_cycles + 1):
         minutes = 15 + (i * 90) * -1
         cycle_time = waking_time + timedelta(minutes=minutes)
-        times.update({f"{i}_cycle": cycle_time.strftime("%H:%M")})
+        times.update({f"{i}": cycle_time.strftime("%H:%M")})
 
     return times
 
@@ -88,3 +89,18 @@ def get_naptime(sleeping_time, nap_minutes=default_naptime):
     """
     nap_wakeup_time = sleeping_time + timedelta(minutes=nap_minutes)
     return {"nap": nap_wakeup_time.strftime("%H:%M")}
+
+
+def validate_input_time(input_time):
+    """
+    Validates that the user's input can be parsed into a usable time format
+    Args:
+        input_time: requested time
+
+    Returns: True if parse-able, raises error otherwise.
+
+    """
+    if datetime.strptime(input_time, "%H:%M"):
+        return True
+    else:
+        raise ValueError
