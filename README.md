@@ -1,5 +1,6 @@
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
-    <img src="https://icon-icons.com/icons2/2000/PNG/72/emoji_sleep_sleeping_icon_123401.png" alt="Logo" width=72 height=72>
+    <img alt="idk" src="https://icon-icons.com/icons2/2000/PNG/72/emoji_sleep_sleeping_icon_123401.png" width=72 height=72>
   <h3 align="center">Bedtime Bot</h3>
   <p align="center">
     A telegram bot you could fall asleep to!
